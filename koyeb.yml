@@ -1,6 +1,8 @@
-build:
-  language: crystal
-  command: shards install && crystal build src/invidious.cr --release --no-debug -o invidious
-
-run:
-  command: ./invidious
+services:
+  - name: invidious
+    build:
+      build_command: |
+        shards install
+        crystal build src/invidious.cr --release --static
+    run:
+      command: ./invidious
